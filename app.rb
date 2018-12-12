@@ -8,6 +8,6 @@ post '/' do
 	erb :index
 end
 
-get '/clear' do
-	erb :index
+get '/rules' do
+	erb :rules
 end

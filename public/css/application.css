@@ -32,3 +32,7 @@ body {
 	clear: both;
 	padding-top: 25px;
 }
+
+.rules {
+	padding: 25px 300px;
+}

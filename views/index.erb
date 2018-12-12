@@ -1,0 +1,102 @@
+<h1>Let's play a game!</h1>
+
+<h2>Pick your hand:</h2>
+
+<div class="selection">
+	<form action="/" method="post" accept-charset="utf-8">
+    <button type="submit" value="rock" name="game">
+    	<img src="/img/rock.png" alt="rock">
+    	<p>ROCK</p>
+    </button>
+    <button type="submit" value="paper" name="game">
+    	<img src="/img/paper.png" alt="paper">
+    	<p>PAPER</p>
+    </button>
+    <button type="submit" value="scissors" name="game">
+    	<img src="/img/scissors.png" alt="scissors">
+    	<p>SCISSORS</p>
+    </button>
+    <button type="submit" value="lizard" name="game">
+    	<img src="/img/lizard.png" alt="lizard">
+    	<p>LIZARD</p>
+    </button>
+    <button type="submit" value="Spock" name="game">
+    	<img src="/img/Spock.png" alt="Spock">
+    	<p>SPOCK</p>
+    </button>
+	</form>
+</div>
+
+<%	
+	def number_to_name(number)
+		if number == 0
+			return "rock"
+		elsif number == 1
+			return "Spock"
+		elsif number == 2
+			return "paper"
+		elsif number == 3
+			return "lizard"
+		elsif number == 4
+			return "scissors"
+		end
+	end
+
+	def name_to_number(name)
+		if name == "rock"
+			return 0
+		elsif name == "Spock"
+  		return 1
+  	elsif name == "paper"
+  		return 2
+  	elsif name == "lizard"
+  		return 3
+  	elsif name == "scissors"
+  		return 4
+  	end
+	end
+
+	if @env["REQUEST_METHOD"] == 'POST'
+		player_choice = params[:game]
+		player_number = name_to_number(player_choice)
+		comp_number = rand(0..4)
+		diff = (player_number - comp_number) % 5
+	end
+%>
+
+<% if player_choice %>
+	<div class="left">
+		<p>Your choice:</p>
+		<div>
+			<img src="/img/<%= player_choice %>.png"> 
+			<p><%= player_choice %></p>
+		</div>
+	</div>
+
+	<div class="right">
+		<p>Computer's choice:</p>
+		<div>
+			<img src="/img/<%= number_to_name(comp_number) %>.png">
+			<p><%= number_to_name(comp_number) %></p>
+		</div>
+	</div>
+
+	<div class="result">
+		<% if (diff == 1) || (diff == 2) %>
+			<h1>You win! :)</h1>
+		<% elsif (diff == 3) || (diff == 4) %>
+			<h1>You lose :(</h1>
+		<% else %>
+			<h1>It's a tie! Try again.</h1>
+		<% end %>
+	</div>
+	
+	<div class="clear">
+		<form action="/" method="get" accept-charset="utf-8">
+	    <button type="submit">
+	    	Clear Game
+	    </button>
+	  </form>
+	</div>
+<% end %>
+	

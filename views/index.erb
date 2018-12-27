@@ -33,6 +33,9 @@
 </div>
 
 <%	
+	counter_player = 0
+	counter_comp = 0
+
 	def number_to_name(number)
 		if number == 0
 			return "rock"
@@ -86,14 +89,8 @@
 		</div>
 	</div>
 
-	<div>
-		<h1> Player: <%= counter_player %> / Computer: <%= counter_comp %></h1>
-	</div>
-
 
 	<div class="result">
-		<% counter_player = 0 %>
-		<% counter_comp = 0 %>
 		<% if (diff == 1) || (diff == 2) %>
 			<h1>You win! :)</h1>
 			<% counter_player += 1 %>
@@ -103,6 +100,10 @@
 		<% else %>
 			<h1>It's a tie! Try again.</h1>
 		<% end %>
+	</div>
+
+	<div>
+		<h1> Player: <%= counter_player %> / Computer: <%= counter_comp %></h1>
 	</div>
 	
 	<div class="clear">
